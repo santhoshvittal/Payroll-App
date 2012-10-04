@@ -18,8 +18,8 @@ $config['smtp_port'] = 465;
 /*
  * SMTP username and password.
  */
-$config['smtp_user'] = ''; //Give Username for SMTP authentication
-$config['smtp_pass'] = ''; //Give Password for SMTP authentication
+$config['smtp_user'] = ''; //Give Username for SMTP authentication (if smtp username exists)
+$config['smtp_pass'] = ''; //Give Password for SMTP authentication (if smtp password exists)
 
 /*
  * Heroku Sendgrid information.

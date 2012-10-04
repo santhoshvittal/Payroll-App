@@ -6,20 +6,17 @@ class Editpage extends CI_Controller
 	
 	public function index()
 	{	
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{
+		else{
 		 $this->layout->view('editpage_view');
 		}
 	}
 
 	public function cre()
 	{
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
 		else
@@ -31,14 +28,11 @@ class Editpage extends CI_Controller
 			$this->form_validation->set_rules('bankacno','Bank A/c No', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('emailid','Email ID', 'trim|required|xss_clean');
 			
-			if($this->form_validation->run() == FALSE)
-			{				
-				$this->load->view('include/header');
-				
+			if($this->form_validation->run() == FALSE){				
+				$this->load->view('include/header');				
 				$this->load->view('include/footer');
 			}
-			else
-			{
+			else{
 				$this->layout->view('new_page');
 			}
 
@@ -48,7 +42,6 @@ class Editpage extends CI_Controller
 
 	public function logout()
 	{
-		$this->load->library('session');
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
 		redirect('user/login');

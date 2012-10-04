@@ -6,15 +6,17 @@ class Calculator extends CI_Controller
 	
 	public function index()
 	{
-
-
+		if(!$this->session->userdata('logged_in')){
+			redirect('user/index');
+		}
+		else{
+			 $this->layout->view('calculator/calc');
+		}
 	}
 
 	public function calc()
 	{
-		$this->load->library('session');
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
 		else
@@ -22,8 +24,8 @@ class Calculator extends CI_Controller
 			$this->form_validation->set_error_delimiters('<div class="error" style="color:red;width:225px;font-size:13px;">', '</div>');
 			$this->form_validation->set_rules('month' , 'Month','required|trim');
 			$this->form_validation->set_rules('payable' , 'Days Payable','required|trim');
-			if($this->form_validation->run() == FALSE)
-			{		
+
+			if($this->form_validation->run() == FALSE){		
 				$this->layout->view('calculator/calc');
 			}
 			else
@@ -47,9 +49,7 @@ class Calculator extends CI_Controller
 
 	public function modify_sal()
 	{
-		$this->load->library('session');
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
 		else
@@ -59,12 +59,11 @@ class Calculator extends CI_Controller
 			$this->form_validation->set_rules('providentfund' , 'Provident fund','required|trim');
 			$this->form_validation->set_rules('vda' , 'VDA','required|trim');
 			$this->form_validation->set_rules('esi' , 'ESI','required|trim');
-			if($this->form_validation->run() == FALSE)
-			{
+			
+			if($this->form_validation->run() == FALSE){
 				$this->layout->view('calculator/modify_salary');
 			}
-			else
-			{
+			else{
 				redirect('calculator/modify_sal');
 			}
 			
@@ -77,7 +76,6 @@ class Calculator extends CI_Controller
 
 	public function logout()
 	{
-		$this->load->library('session');
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
 		redirect('user/login');

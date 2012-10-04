@@ -6,18 +6,21 @@ class Salary extends CI_Controller
 	
    public function index()
 	{
+		if(!$this->session->userdata('logged_in')){
+			$this->layout->view('user/login_page');
+		}
+		else{
+			redirect('salary/salary_manage');
+		}
 		
 	}
 
 	public function salary_manage()
 	{
-		$this->load->library('session');
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{ 
+		else{ 
 			$data['query'] = $this->salary_model->retrieve();
 			$this->layout->view('salary/salary_details',$data);
 		}
@@ -25,26 +28,20 @@ class Salary extends CI_Controller
 
 	public function data_fetch()
 	{
-		$this->load->library('session');
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{
+		else{
 		 	redirect('salary/salary_manage');
 		}
 	}
 
 	public function upload_view()
 	{
-		$this->load->library('session');
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{  
+		else{  
 			$data['query'] = $this->salary_model->retrieve();
 			$this->layout->view('salary/upload_file');
 		}
@@ -55,7 +52,6 @@ class Salary extends CI_Controller
 
 	public function logout()
 	{
-		$this->load->library('session');
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
 		redirect('user/login');

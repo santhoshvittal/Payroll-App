@@ -12,7 +12,6 @@ class Registration_model extends CI_Model
 
 	public function insert_employee($val,$parent,$child)
 	{
-
 		$tableName = $child.'s';
 		$selectId = $child.'_id';
 		$selectName = $child.'_name';

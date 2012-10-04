@@ -10,12 +10,10 @@ class Upload extends CI_Controller
 	
 	public function index()
 	{
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{
+		else{
 			$this->layout->view('upload/upload');
 		}
 	}
@@ -28,13 +26,11 @@ class Upload extends CI_Controller
 		
 		$this->load->library('upload',$config);
 
-		if (!$this->upload->do_upload())
-		{		
+		if (!$this->upload->do_upload()){		
 			$this->session->set_flashdata('upload_error',TRUE);
 			redirect('upload');
 		}
-		else
-		{
+		else{
 			$data = array('upload_data'=> $this->upload->data());
 			$this->layout->view('upload/upload',$data);	
 		}	

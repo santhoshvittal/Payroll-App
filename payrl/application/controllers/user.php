@@ -26,12 +26,10 @@ class User extends CI_Controller
 		$this->form_validation->set_rules('username','Username','required|trim|xss_clean');
 		$this->form_validation->set_rules('password','Password','required|trim|xss_clean');
 
-		if($this->form_validation->run() == FALSE)
-		{
+		if($this->form_validation->run() == FALSE){
 			$this->layout->view('user/login_page');
 		}
-		else
-		{
+		else{
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			$id = $this->user_model->check_login($username ,$password);
@@ -51,7 +49,6 @@ class User extends CI_Controller
 
 	public function valid_login()
 	{
-		$this->load->library('session');
 		if($this->session->userdata('logged_in')){	
 			redirect('user/data_fetch');
 		}
@@ -64,12 +61,10 @@ class User extends CI_Controller
 
 	public function data_fetch()
 	{	
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{  
+		else{  
 			$data['query'] = $this->user_model->retrieve();
 			$this->layout->view('user/display_view',$data);	
 		}
@@ -77,24 +72,20 @@ class User extends CI_Controller
 	
 	public function update()
 	{
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{	
+		else{	
 			redirect('user/data_fetch');
 		}
 	}
 
 	public function search_employee()
 	{
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{	 
+		else{	 
 			$data['query'] = $this->user_model->retrieve();
 			$this->layout->view('user/search_emp_details');	
 		}
@@ -102,24 +93,20 @@ class User extends CI_Controller
 
 	public function create_employee()
 	{
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{
+		else{
 			$this->load->view('create_employee');
 		}
 	}
 
 	public function insert_user()
 	{
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{
+		else{
 			$data['query'] = $this->user_model->retrieve();
 			$this->layout->view('form_success');
 		}

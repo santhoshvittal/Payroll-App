@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
-	* This User_model is used to Get model information.
+	* This User_model is used to Get model information of user.
 */
 
 class User_model extends CI_Model

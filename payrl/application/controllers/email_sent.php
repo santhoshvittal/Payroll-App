@@ -19,12 +19,10 @@ class Email_sent extends CI_Controller
 		$this->email->subject('Test for mail send');
 		$this->email->message('New Mail will you get soon');
 		$result = $this->email->send(); 
-		if($result)
-		{			
+		if($result){			
 			redirect('email_sent/test');
 		}
-		else
-		{			
+		else{			
 			redirect('email_sent/index');
 		}
 	}
@@ -38,11 +36,9 @@ class Email_sent extends CI_Controller
 
 	public function logout()
 	{
-		$this->load->library('session');
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
 		redirect('user/login');
-	}
-	
+	}	
 
 }

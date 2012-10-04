@@ -6,15 +6,19 @@ class Registration extends CI_controller
 
 	public function index()
 	{
-			
+		if(!$this->session->userdata('logged_in')){
+			redirect('user/index');
+		}
+		else{
+			 $this->layout->view('registration/registration');
+		}	
 	}
 
 	// After login, Create Employee and Employer.
 
 	public function add_employee()
 	{
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
 		else
@@ -26,8 +30,7 @@ class Registration extends CI_controller
 			$this->form_validation->set_rules('designation' , 'Designation','required|trim');
 			$this->form_validation->set_rules('department' , 'Department','required|trim');
 			
-			if($this->form_validation->run() == FALSE)
-			{
+			if($this->form_validation->run() == FALSE){
 				$this->layout->view('registration/registration');
 			}
 			else
@@ -43,7 +46,7 @@ class Registration extends CI_controller
 				if(!$id){
 					$this->session->set_flashdata('login_error1',TRUE);
 					redirect('registration/add_employee');
-					}
+				}
 				else{
 					$this->session->set_userdata(array('inserted'=>TRUE,'id'=>$id));			
 					redirect('registration/display');
@@ -54,13 +57,10 @@ class Registration extends CI_controller
 	}
 	public function display()
 	{
-		$this->load->library('session');
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{
+		else{
 			if($this->session->userdata('inserted')){					
 				redirect('registration/data_fetch');			
 			}
@@ -83,14 +83,11 @@ class Registration extends CI_controller
 		$this->pagination->initialize($config);*/
 
 		// Fetching data from database table
-		$this->load->library('session');
-		if(!$this->session->userdata('logged_in'))
-		{
+
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{
-			$this->load->model('registration_model');  	
+		else{ 	
 			$data['query'] = $this->registration_model->fetch_value();					
 			$this->layout->view('registration/display_view',$data);			
 		}
@@ -98,9 +95,7 @@ class Registration extends CI_controller
 
 	public function create_employer()
 	{
-		$this->load->library('session');
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
 		else
@@ -118,13 +113,11 @@ class Registration extends CI_controller
 			$this->form_validation->set_rules('kiosk', 'Kiosk ID', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('join', 'Join', 'trim|required|xss_clean');
 		
-			if($this->form_validation->run() == FALSE)
-			{
+			if($this->form_validation->run() == FALSE){
 				$this->layout->view('registration/create_employer');
 			}
 			else
 			{
-
 				$data = array('Emp_Code'=>$this->input->post('emp_code'),
 							  'Name'=>$this->input->post('name'),
 							  'Name_of_the_Bank'=>$this->input->post('bankname'),
@@ -156,18 +149,14 @@ class Registration extends CI_controller
 	{
 		$test = $this->input->get('sel');
 		$parent = $this->input->get('parent');
-		$child = $this->input->get('child');
-		
+		$child = $this->input->get('child');		
 		$data = $this->registration_model->insert_employee($test,$parent,$child);
-		error_log("ter aath me".print_r(json_encode($data),true));
 		echo json_encode($data);
-		//echo $data;
 	}
 
 
 	public function display1()
 	{
-		$this->load->library('session');
 		if($this->session->userdata('employee_inserted')){	
 			redirect('registration/data_fetch1');
 		}
@@ -187,14 +176,10 @@ class Registration extends CI_controller
 		$this->pagination->initialize($config);*/
 
 		// Fetching data from database table
-		$this->load->library('session');
-		if(!$this->session->userdata('logged_in'))
-		{
+		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else
-		{
-			$this->load->model('registration_model');  	
+		else{  	
 			$data['query'] = $this->registration_model->save();	
 			$this->layout->view('registration/display_view',$data);	
 		}
@@ -204,7 +189,6 @@ class Registration extends CI_controller
 
 	public function logout()
 	{
-		$this->load->library('session');
 		$this->session->unset_userdata('logged_in');
 		$this->session->sess_destroy();
 		redirect('user/login');
