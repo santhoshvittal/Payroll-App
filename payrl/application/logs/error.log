@@ -1,0 +1,2 @@
+[Thu Oct 04 15:01:45 2012] [error] [client 127.0.0.1] PHP Fatal error:  Call to a member function insert_value() on a non-object in /var/www/Payroll-App/payrl/application/controllers/registration.php on line 42, referer: http://localhost/registration/add_employee
+[Thu Oct 04 15:05:14 2012] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method User_model::insert_value() in /var/www/Payroll-App/payrl/application/controllers/registration.php on line 42, referer: http://localhost/registration/add_employee

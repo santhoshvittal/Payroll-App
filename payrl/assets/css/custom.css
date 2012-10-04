@@ -3,5 +3,49 @@
  */
 
 body {
-   padding-top: 15px;
+   padding-top: 10px;
+   background-image:url('../img/graphy.png'); 
+   background-repeat: repeat;
 }
+
+.logout_link{
+	/*float:right;
+	list-style:none; 
+	border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    line-height: 20px;
+    padding-bottom: 8px;
+    padding-top: 8px;*/
+}
+
+.control-label{
+	color:#537CA6;
+}
+
+.btn.btn-primary{
+	color:#FFFFFF;
+}
+.btn{
+	color:#537CA6;
+}
+.data_val{
+	color:#537CA6;
+}
+#user{
+float:left;
+}
+#passwd{
+float:left;
+}
+#username{
+margin-left: 12px;	
+}
+#password{
+margin-left: 12px;	
+}
+
+
+
+
+
+
