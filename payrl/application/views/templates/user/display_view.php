@@ -1,3 +1,6 @@
+<!-- List of user details view page held here
+    ================================================== -->
+ 
 <div class="span10">
 <ul class="nav nav-tabs">
       <li class="active"><a href="data_fetch">List of Employee</a></li>
@@ -34,8 +37,3 @@
 	</div>
 </div>	
 
-<script>
-  $('#myTab a').click(function () {
-  $(this).tab('show');
-});	
-</script>

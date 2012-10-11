@@ -1,3 +1,6 @@
+<!-- Login view page held here
+    ================================================== -->
+
 <div class="container"> 
       <div class="row">    
          <div style ="margin-bottom:20px;">        
@@ -7,8 +10,8 @@
    </div> 
 
 <div style="width: 350px; margin: 0 auto;">
-<div class='well'>
-<h3 ><img hspace="15" src="<?= base_url('assets/img/lock.000.png')?>"/><span style="text-align:center;color:#537CA6;">Login Page</span></h3>
+  <div class='well'>
+	<h3 ><img hspace="15" src="<?= base_url('assets/img/lock.000.png')?>"/><span style="text-align:center;color:#537CA6;">Login Page</span></h3>
 
 		<div class="exam" style="padding-top: 20px;">		
 			<?php echo form_open('user/login')?>
@@ -43,7 +46,7 @@
 			<?php echo form_close();?>
 		</div>
     </div>
+  </div>
 </div>
-    </div>
 
 

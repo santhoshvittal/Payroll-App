@@ -1,4 +1,5 @@
-  
+<!-- Registration of a employer view page held here
+    ================================================== -->  
 <div class="span10">
   <ul class="nav nav-tabs">
       <li class="active"><a href="add_employee">Create Employer</a></li>
@@ -63,7 +64,3 @@
 </div>
 
 <!-- Javascripts, Ajax  and other call are held here for this page -->
-
- <script>
-   $('#datepicker').datepicker(); 
-   </script>

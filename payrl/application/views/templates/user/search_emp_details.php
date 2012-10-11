@@ -1,3 +1,5 @@
+<!-- Search employee details view page held here
+    ================================================== -->
 
 <div class="span10">
 <ul class="nav nav-tabs">
@@ -20,9 +22,9 @@
         </form>
         </div>
       </div> 
+     </div>
     </div>
-    </div>
-  </div>
+   </div>
 </div>
 </div>
 </div>

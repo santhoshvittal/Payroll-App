@@ -1,4 +1,7 @@
-  <div class="span10">
+  <!-- Calculation salary details view page held here
+    ================================================== -->
+
+  <div class="span10" style="width:auto;">
   <ul class="nav nav-tabs">
       <li class="active"><a href="calc">Calculate Salary</a></li>   
       <li><a href="modify_sal">Modify Salary</a></li>   
@@ -35,5 +38,5 @@
       </div>
     </div>
   </div>
-   </div>
+</div>
     

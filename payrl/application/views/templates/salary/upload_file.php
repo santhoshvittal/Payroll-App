@@ -1,3 +1,6 @@
+<!-- Upload file view page held here
+    ================================================== -->
+
 <div class="span10">
 <ul class="nav nav-tabs">
       <li ><a href="salary_manage"> ViewFile</a></li>

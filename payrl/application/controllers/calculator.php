@@ -22,10 +22,8 @@ class Calculator extends CI_Controller
 		else
 		{
 			$this->form_validation->set_error_delimiters('<div class="error" style="color:red;width:225px;font-size:13px;">', '</div>');
-			$this->form_validation->set_rules('month' , 'Month','required|trim');
-			$this->form_validation->set_rules('payable' , 'Days Payable','required|trim');
 
-			if($this->form_validation->run() == FALSE){		
+			if($this->form_validation->run('calculation') == FALSE){		
 				$this->layout->view('calculator/calc');
 			}
 			else
@@ -55,12 +53,8 @@ class Calculator extends CI_Controller
 		else
 		{
 			$this->form_validation->set_error_delimiters('<div class="error" style="color:red;width:240px;font-size:13px;">', '</div>');
-			$this->form_validation->set_rules('basicsalary' , 'Basic salary','required|trim');
-			$this->form_validation->set_rules('providentfund' , 'Provident fund','required|trim');
-			$this->form_validation->set_rules('vda' , 'VDA','required|trim');
-			$this->form_validation->set_rules('esi' , 'ESI','required|trim');
 			
-			if($this->form_validation->run() == FALSE){
+			if($this->form_validation->run('salary') == FALSE){
 				$this->layout->view('calculator/modify_salary');
 			}
 			else{

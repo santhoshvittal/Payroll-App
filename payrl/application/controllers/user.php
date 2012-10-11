@@ -23,10 +23,8 @@ class User extends CI_Controller
 	public function login()
 	{	
 		$this->form_validation->set_error_delimiters('<div class="error" style="color:red;margin-left:12px;font-size:13px;">', '</div>');
-		$this->form_validation->set_rules('username','Username','required|trim|xss_clean');
-		$this->form_validation->set_rules('password','Password','required|trim|xss_clean');
 
-		if($this->form_validation->run() == FALSE){
+		if($this->form_validation->run('signup') == FALSE){
 			$this->layout->view('user/login_page');
 		}
 		else{
@@ -64,7 +62,7 @@ class User extends CI_Controller
 		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
-		else{  
+		else{ 		
 			$data['query'] = $this->user_model->retrieve();
 			$this->layout->view('user/display_view',$data);	
 		}

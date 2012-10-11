@@ -1,5 +1,8 @@
+<!-- Create employer and employee details view page held here
+    ================================================== -->
+
 <div class="span10">
-<ul class="nav nav-tabs" id="myTab">
+<ul class="nav nav-tabs">
   <li><a href="add_employee">Create Employer</a></li>
   <li class="active"><a href="create_employer">Create Employee</a></li>     
 </ul> 
@@ -135,11 +138,6 @@
 
 <script>
   
-/* This click javascript function is mainly used to tabbing sub directory of the entire payroll system */
-
-  $('#myTab a').click(function (e) {  
-    $(this).tab('show');
-  });
 
 /* This is used to pick date value in create employer */
    $('#datepicker').datepicker(); 

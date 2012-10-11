@@ -1,3 +1,6 @@
+<!-- Displaying employer details view page held here
+    ================================================== -->
+
 	<div class="span10">
 	<ul class="nav nav-tabs">
       <li class="active"><a href="data_fetch">List of Employee</a></li>
@@ -18,7 +21,7 @@
 					</tr>					
 				<?php foreach($query as $row): ?>
 				<tr>
-				
+					<?php //error_log("TEST :".print_r($row,true));?>
 					<td><a href="update"><?php echo $row->slno;?></a></td>
 					<td><?php echo $row->name;?></td>
 					<td><?php echo $row->designation;?></td>
@@ -36,7 +39,5 @@
 <!-- Javascripts, Ajax  and other call are held here for this page -->
 
 <script>
-  $('#myTab a').click(function () {
-  $(this).tab('show');
-});	
+
 </script>

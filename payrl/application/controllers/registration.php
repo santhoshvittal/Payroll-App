@@ -24,13 +24,8 @@ class Registration extends CI_controller
 		else
 		{
 			$this->form_validation->set_error_delimiters('<div class="error" style="color:red;font-size:13px;">', '</div>');
-			$this->form_validation->set_rules('fullname' , 'Fullname','required|trim');
-			$this->form_validation->set_rules('username' , 'Username','required|trim');
-			$this->form_validation->set_rules('password' , 'Password','required|trim');
-			$this->form_validation->set_rules('designation' , 'Designation','required|trim');
-			$this->form_validation->set_rules('department' , 'Department','required|trim');
 			
-			if($this->form_validation->run() == FALSE){
+			if($this->form_validation->run('register') == FALSE){
 				$this->layout->view('registration/registration');
 			}
 			else
@@ -101,19 +96,8 @@ class Registration extends CI_controller
 		else
 		{
 			$this->form_validation->set_error_delimiters('<div class="error" style="color:red;width:240px;font-size:13px;">', '</div>');
-			$this->form_validation->set_rules('emp_code', 'Emp code', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('name', 'Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('bankname', 'Bank Name', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('emp_designation', 'Designation', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('emailid', 'EmailId', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('bankacno', 'Bank A/C no', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('zone', 'Zone', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('district', 'District', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('taluk', 'Taluk', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('kiosk', 'Kiosk ID', 'trim|required|xss_clean');
-			$this->form_validation->set_rules('join', 'Join', 'trim|required|xss_clean');
 		
-			if($this->form_validation->run() == FALSE){
+			if($this->form_validation->run('employer') == FALSE){
 				$this->layout->view('registration/create_employer');
 			}
 			else
@@ -152,6 +136,7 @@ class Registration extends CI_controller
 		$child = $this->input->get('child');		
 		$data = $this->registration_model->insert_employee($test,$parent,$child);
 		echo json_encode($data);
+		error_log('Json :'.print_r($test,true));
 	}
 
 
