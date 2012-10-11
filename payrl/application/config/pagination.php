@@ -30,8 +30,8 @@ $config['prev_link'] = false;
 /*
  * Do not edit, bypass CI bug.
  */
-$config['uri_segment'] = $this->uri->total_segments();
-
+//$config['uri_segment'] = $this->uri->total_segments();
+$config['uri_segment'] = 3;
 /*
  * The "First" and "Last" segments.
  */

@@ -1,0 +1,176 @@
+<div class="tabbable">
+        <ul class="nav nav-tabs ">
+		 <?php if(Zend_Auth::getInstance()->getStorage()->read()->role_id == 2 ): ?> 
+          <li><a href="<?php echo $this->url(array('controller'=>'registrations','action'=>'index'),null,true); ?>" >Create Application</a></li>
+          <?php endif; ?>
+          
+        
+          <li class="active"><a href="<?php echo $this->url(array('controller'=>'registrations','action'=>'list'),null,true); ?>" >List of Applications</a></li>
+          
+           <li><a href="<?php echo $this->url(array('controller'=>'registrations','action'=>'editapp'),null,true); ?>" >Search and <?php echo (Zend_Auth::getInstance()->getStorage()->read()->role_id ==5 || Zend_Auth::getInstance()->getStorage()->read()->role_id ==7 || Zend_Auth::getInstance()->getStorage()->read()->role_id ==8)?"Edit":"View" ?>  Application</a></li>
+		  
+        </ul>
+
+<div class="tab-content well">
+  	
+  		
+<?php 
+
+
+$roleID = Zend_Auth::getInstance()->getStorage()->read()->role_id;
+
+if($roleID!=3 and $roleID!=8):
+
+switch ($roleID) {
+  case 3:
+    $statusArr = array( 0=> 'All',6=>"Verified" );
+    break;
+  case 5:
+    $statusArr = array( 0=> 'All',1=>"Registered",7=>"QC Rejected",5=>"Approver-Rejected" );
+    break;
+  case 8:
+    $statusArr = array( 0=> 'All',3=>"Verified");
+    break;
+  
+  default:
+    $statusArr = array( 0=> 'All',1=>"Registered",2=>"Approved",3=>"Verified",4=>"Verifier-Rejected",5=>"Approver-Rejected",6=>"Verified & QC Checked",7=>"QC Rejected",8=>"Id Card Printed",9=>"Super Admin Rejected" );
+    break;
+}
+ ?>
+
+ 	
+  	
+<form class="form-horizontal" method="post" action="/registrations/list">
+                     <?php if(isset($_SESSION['refineBystatus'])): ?>
+                      <fieldset>
+                          <div class="control-group">
+                            <label class="control-label" for="select01">Please select Status:</label>
+                            <div class="controls">
+                              <select name="refineBystatus" id="select01">
+                                <?php foreach ($statusArr as $key => $value): ?>
+                                  
+                                
+                                  <option value="<?php echo $key?>" <?php echo $_SESSION['refineBystatus'] == $key ? "selected='selected'" : '' ; ?>  label="<?php echo $value?>"><?php echo $value?></option>
+
+                                <?php endforeach; ?>
+                              </select>
+                              <button type="submit" class="btn btn-primary">Refine</button>
+                            </div>
+                          </div>
+                      </fieldset>
+                    <?php else: ?>
+                    <fieldset>
+                          <div class="control-group">
+                            <label class="control-label" for="select01">Please select Status:</label>
+                            <div class="controls">
+                              <select name="refineBystatus" id="select01">
+                                <?php foreach ($statusArr as $key => $value): ?>
+                                  
+                                
+                                  <option value="<?php echo $key?>" label="<?php echo $value?>"><?php echo $value?></option>
+                                  
+                                <?php endforeach; ?>
+                              </select>
+                              <button type="submit" class="btn btn-primary">Apply</button>
+                            </div>
+                          </div>
+                      </fieldset>
+                  <?php endif; ?>
+</form>
+
+<?php endif; ?>
+
+<?php if(count($this->apps)>0):?>
+
+<?php echo $this->paginationControl($this->apps,'Sliding', 'registrations/applicationsPagination.phtml'); ?>
+
+<br>
+  	
+  	<div class="tab-pane active" >
+           
+          		<form   class="form-horizontal" method="post" action="/registrations/bulkstatuschange">
+                      
+                      <?php if(Zend_Auth::getInstance()->getStorage()->read()->role_id == 5 or Zend_Auth::getInstance()->getStorage()->read()->role_id == 3 ): ?>
+                      
+                      <fieldset id="statusChangeDiv">
+                          <div class="control-group">
+	                          <label class="control-label" for="select01">Please select the status to Verify/Reject</label>
+	                          <div class="controls">
+	                            <select name="status" id="select01">
+		                            <option value="1">Choose</option>
+		                          	
+		                          	<?php if(Zend_Auth::getInstance()->getStorage()->read()->role_id == 5 ): ?> 
+		                          	<option value="3">Verified</option>
+		                          	<?php endif;?>                     
+									<!--<option value="4">Rejected</option> -->
+		                          	
+		                          	<?php if(Zend_Auth::getInstance()->getStorage()->read()->role_id == 3 ): ?>
+		                          	<option value="2">Approved</option>
+		                          	<?php endif;?>                   
+		                          	
+		                          	
+	                            </select>
+	                            <button type="submit" class="btn btn-primary">Save Status</button>
+	                          </div>
+                          </div>
+                      </fieldset>
+                      
+                      <?php endif;?>      
+                  
+          <input type='hidden' id='current_page' /> 
+         <input type='hidden' id='show_per_page' />   
+	<div id="table_app">
+   		<table class="table table-bordered table-striped">
+            <thead>
+             <tr>
+             	<?php if(Zend_Auth::getInstance()->getStorage()->read()->role_id == 5 or Zend_Auth::getInstance()->getStorage()->read()->role_id == 3 ): ?>
+                <th style="width: 120px;"><a class="btn btn-mini btn-primary select-all-link" >Select/Unselect All</a></th>
+                <?php endif;?>
+               
+               <th style="width: 150px;">Registration ID</th>
+               <th style="width: 180px;">Applicant Name</th>
+               <th style="width: 150px;">DL No.</th>
+               <th style="width: 150px;">Status</th>
+               <th style="width: 150px;">Location</th>
+               <th style="width: 150px;">Date of Submision</th>
+             </tr>
+            </thead>
+            <tbody>
+
+            <?php foreach ($this->apps as $app): ?>
+              <tr>
+              <?php if(Zend_Auth::getInstance()->getStorage()->read()->role_id == 5 or Zend_Auth::getInstance()->getStorage()->read()->role_id == 3 ): ?>
+              <td> <input type="checkbox" name="selected_ids[]" class="selected-ids" value="<?php echo $app['registration_id'] ?>" /> </td>
+              <?php endif;?>
+              
+               <td><a href="<?php echo $this->url(array('controller'=>'registrations','action'=>'editapp','appRegNo'=>$app['registration_id']),null,true); ?>"  ><?php echo $app['applicant_register_no']; ?></a></td>
+               <td><?php echo $app['fullname']; ?></td>
+               <td><code><?php echo $app['dl_no']; ?></code></td>
+               <td><span class='label label-<?php echo $app->status == 2 ? "success" : ((($app->status == 4 || $app->status == 5 || $app->status == 9) ? "important" :  ($app->status == 3 ? "warning" : ($app->status == 8 ? "print" :"info"))))?>'><?php 
+               $reg = new Application_Model_Registrationsmapper();
+               echo $reg->statusChange($app->status); ?></span> </td>
+               <td><?php echo (!$app->findParentRow('Application_Model_DbTable_Users','User')->kiosk_id)?'':$app->findParentRow('Application_Model_DbTable_Users','User')->findParentRow('Application_Model_DbTable_Kiosks','Kiosk')->kiosk_name; ?></td>
+               <td><?php echo $app['created_at']; ?></td>
+             </tr>
+         	<?php endforeach; ?>
+             
+            </tbody>
+          </table>
+	</div>
+	
+	</form>
+	<?php echo $this->paginationControl($this->apps,'Sliding', 'registrations/applicationsPagination.phtml'); ?>
+	<!-- <div id='page_navigation' style="background:#f5f5f5;height: 25px; padding-left: 20px;"></div> -->
+	</div>
+	
+	<?php else:?>
+	
+	<span class="label label-info">No Applications found in your list.</span>
+	
+	<?php endif;?>
+	
+	
+	
+	</div>
+ </div>
+
