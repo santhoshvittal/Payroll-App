@@ -38,8 +38,14 @@
 |
 */
 
-$route['default_controller'] = "frontpage";
+$route['default_controller'] = "User";
 $route['404_override'] = '';
+
+
+//$route['registration'] = 'registration/add_employee';
+
+//$route['(?i)([a-z0-9_-]+)/users/(:num)(/(:any))?'] = 'users/dashboard/$2';
+//$route['(?i)([a-z0-9_-]+)/registration/(:any)'] = 'registration/$2';
 
 
 /* End of file routes.php */

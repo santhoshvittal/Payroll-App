@@ -4,19 +4,22 @@
  * What protocol to use?
  * mail, sendmail, smtp
  */
-$config['protocol'] = 'mail';
+////$config['protocol'] = 'sendmail';
+//$config['mailpath'] = '/usr/sbin/sendmail';
+
+$config['protocol'] = 'smtp';
 
 /*
  * SMTP server address and port
  */
-$config['smtp_host'] = '';
-$config['smtp_port'] = '';
+$config['smtp_host'] = 'ssl://smtp.googlemail.com';
+$config['smtp_port'] = 465;
 
 /*
  * SMTP username and password.
  */
-$config['smtp_user'] = '';
-$config['smtp_pass'] = '';
+$config['smtp_user'] = ''; //Give Username for SMTP authentication (if smtp username exists)
+$config['smtp_pass'] = ''; //Give Password for SMTP authentication (if smtp password exists)
 
 /*
  * Heroku Sendgrid information.
@@ -28,3 +31,4 @@ $config['smtp_port'] = 587;
 $config['smtp_user'] = $_SERVER['SENDGRID_USERNAME'];
 $config['smtp_pass'] = $_SERVER['SENDGRID_PASSWORD'];
 */
+

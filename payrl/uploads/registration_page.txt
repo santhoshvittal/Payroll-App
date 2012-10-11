@@ -1,0 +1,231 @@
+<!-- <div class="alert alert-success" style = "width: 1000px; margin-left: 179px; height: 24px;">
+<p>You are successfully logged in</p> 
+</div>  -->
+
+<!-- <div class="row" style="max-width: 220px; padding: 8px 0;"> -->
+<div class="container">	
+	<div class="row">
+		<div class="span2 bs-docs-sidebar">
+			<ul class="nav nav-list">
+					<li class ="active"><a href="#">Home</a></li>	
+					<li ><a href="#employer">User</a></li>
+					<li ><a href="#employee">Employee</a></li>				
+			</ul>
+		</div>
+		<div class="span9">
+			<ul class="nav nav-tabs"  style="width:960px;" id="myTab">
+			  <li class="active"><a href="#employer">Create Employer</a></li>
+			  <li><a href="#employee">Create Employee</a></li>	   
+			  <ul class="logout_link">
+			  	<li><a href="login">Logout</a></li>
+			  </ul>
+			</ul>
+		</div>
+	
+
+
+
+	</div>
+
+</div>
+
+	<div class="tab-content">
+	<div class="tab-pane" id="employee">
+	 	
+	 	
+	 		<form class="form-horizontal"> djsjdkljsad</form>
+	 	
+	  </div>
+	  </div>
+
+<!-- <div class="tab-content">
+	  <div class="tab-pane" id="employee">
+	 	<div class="row" >
+	 		<div class="span8"> 
+	 		<form class="form-horizontal"> djsjdkljsad </form>
+	 		</div> 
+		</div> 
+	  </div>
+</div> -->
+
+<!-- <div class="tab-content">
+  <div class="tab-pane active" id="employer">
+ 	<div class="row" >
+ 		<?php //echo form_open('user/add_employee')?> 
+   		<div class="span8"> 
+
+   			<form class="form-horizontal" action="add_employee" method="post">	
+		    	
+		    	<div class="control-group">
+			    	<label for="inputFullname" class="control-label" style="margin-right: 20px;">FullName :</label>
+				    <div class="controls" >
+				    	<input type="text" name="fullname" id="inputFullname" value="<?php echo set_value('fullname');?>"/>
+				    	<?php echo form_error('fullname'); ?>
+					</div>
+			 	</div>	
+			 	<div class="control-group">
+			    	<label for="inputUsername" class="control-label" style="margin-right: 20px;">UserName :</label>
+				    <div class="controls" >
+				    	<input type="text" name="username" id="inputUsername" value="<?php echo set_value('username'); ?>" />
+				    	<?php echo form_error('username'); ?>
+					</div>
+			 	</div>
+			 	<div class="control-group">
+			    	<label for="inputPassword" class="control-label" style="margin-right: 20px;">Password :</label>
+				    <div class="controls" >
+				    	<input type="password" name="password" id="inputPassword" value="<?php echo set_value('password'); ?>"/>
+				    	<?php echo form_error('password'); ?>
+			  		</div>
+			 	</div>
+			 	<div class="control-group">
+			    	<label for="inputDesignation" class="control-label" style="margin-right: 20px;">Designation :</label>
+				    <div class="controls" >
+				    	<input type="text" name="designation" id="inputDesignation" value="<?php echo set_value('designation'); ?>"/>
+				    	<?php echo form_error('designation'); ?>
+			  		</div>
+			 	</div>
+			 	<div class="control-group">
+			    	<label for="inputDepartment" class="control-label" style="margin-right: 20px;">Department :</label>
+				    <div class="controls" >
+				    	<input type="text" name="department" id="inputDepartment" value="<?php echo set_value('department'); ?>"/>
+				    	<?php echo form_error('department'); ?>
+			 		</div>
+			 	</div>
+			 	 <div class="control-group">
+					<div class="controls">
+						<?php 
+								if ($this->session->flashdata('login_error1')){
+									echo "Wrong Username or Password";
+								}
+								
+						?>	
+		 				<input class="btn" type="submit" value ="Create" />
+		 				<input class="btn" type="reset" value ="Reset" />
+		 			</div>
+		 		</div>
+	 			
+						
+
+		    <?php //echo form_close();?>
+
+
+		  </form>
+
+
+	  </div>
+	</div>
+  </div>
+</div> -->
+<!-- </div>	
+</div> -->
+
+
+
+<!-- <div class="span10">
+
+ 
+	<ul class="nav nav-tabs"  style="width: 960px;" id="myTab">
+	  <li class="active"><a href="#employer">Create Employer</a></li>
+	  <li><a href="#employee">Create Employee</a></li>
+	   
+
+	  <ul class="logout_link">
+	  	<li><a href="login">Logout</a></li>
+	  </ul>
+	</ul>
+
+
+<div class="tab-content">
+  <div class="tab-pane active" id="employer">
+ 	<div class="row" >
+   		<div class="span10">
+   			<div class="well" style = "padding-bottom:280px;">
+
+		    <?php echo form_open('user/add_employee')?>
+		    <div class="span4 offset0">
+			    <label for="fullname" >FullName :
+			    <input type="text" name="fullname" style="margin-left: 20px;"/></label>
+				
+			    <label for="username" >UserName :
+			    <input type="text" name="username" style="margin-left: 15px;"/></label>
+				
+			    <label for="password">Password :
+			    <input type="password" name="password" style="margin-left: 21px;"/></label>
+		  		
+			    <label for="designation">Designation :
+			    <input type="text" name="designation" style="margin-left: 5px;"/></label>
+		  		
+			    <label for="department">Department :
+			    <input type="text" name="department" style="margin-left: 4px;"/></label>
+		 		
+		 		<input class="btn" type="submit" value ="Create" style="margin-top:8px"/>
+		 		
+		 		<input class="btn" type="reset" value ="Reset" style="margin-top:8px;margin-left: 22px;"/>
+		 	</div>
+	 	
+				<?php 
+					if ($this->session->flashdata('login_error1'))
+					{
+						echo "Wrong Username or Password";
+					}
+					else
+					{
+						echo validation_errors();						
+					}
+				?>			
+
+		    <?php echo form_close();?>
+			</div>
+		</div>
+	</div>
+  </div>
+
+  <div class="tab-pane" id="employee">
+	<div class="row" >
+   		<div class="span10">
+   			<div class="well" style="padding-bottom:300px;">   			
+    
+		    <?php //echo form_open('user/add_employee')?>
+		    	<div class="span5 offset0">
+				    <label for="emp_code" >Emp Code :
+				    <input type="text" name="emp_code" style="margin-left: 8px;"/></label>
+
+					<label for="name" >Name :
+				    <input type="text" name="emp_code" style="margin-left: 35px;"/></label>
+					
+				    <label for="zone" >Zone :
+				    <input type="text" name="zone" style="margin-left: 40px;"/></label>
+			  		
+				    <label for="district">District :
+				    <input type="text" name="district" style="margin-left: 24px;"/></label>	
+
+				    <label for="taluk" >Taluk :
+			    	<input type="text" name="taluk" style="margin-left: 38px;"/></label>	
+
+			    	<label for="hobli" >Hobli :
+			    	<input type="text" name="hobli" style="margin-left: 37px;"/></label>  	
+
+			    	<label for="kioskid" >Kiosk Id :
+			    	<input type="text" name="kioskid" style="margin-left: 22px;"/></label>	
+		  		</div>
+
+			    
+		    <?php echo form_close();?>
+			
+		   </div>
+		</div>
+  	  </div> 
+   </div>
+</div> -->
+
+<script>
+$('#myTab a').click(function () {
+  $(this).tab('show');
+});
+
+$('#dp3').datepicker();
+            
+       
+</script>
+
+
